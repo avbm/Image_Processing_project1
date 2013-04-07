@@ -17,8 +17,8 @@ gray = uint16(zeros(size(Img_float,1),size(Img_float,2)));
 %endif
 
 for i=1:size(Img_float,3)
-    gray += (Img_float(:,:,i));
-endfor
+    gray = gray + (Img_float(:,:,i));
+end
 gray = gray/size(Img_float,3);
 
 gray = uint8(gray);

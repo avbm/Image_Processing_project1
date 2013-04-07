@@ -2,8 +2,10 @@
 %Notes: The code has been implemented as instructed in class
 %filter_buffer = sigma*sigma/4 *[1 1 1; 1 -8 1; 1 1 1] is a better approximation
 
-function output_Img = spatialDeblur(input_Img, sigma=1);
-
+function output_Img = spatialDeblur(input_Img, sigma)
+if nargin <2
+    sigma =1 ;
+end
 output_Img = double(zeros(size(input_Img)));
 sigma = double(sigma);
 input_Img = double(input_Img);
@@ -30,18 +32,18 @@ for i=1:size(input_Img,1)
                     x= 2*size(input_Img,1) - x;
                 else
                     x = x;
-                endif
+                end
                 if(y<1)
                     y=-y+1;
                 elseif y>size(input_Img,2)
                     y= 2*size(input_Img,2) - y;
                 else
                     y = y;
-                endif
-                output_Img(i,j) += filter_buffer(2+a,2+b)*input_Img(x,y);
-            endfor
-        endfor
+                end
+                output_Img(i,j) = output_Img(i,j)+filter_buffer(2+a,2+b)*input_Img(x,y);
+            end
+        end
         %output_Img(i,j) -= temp; 
-    endfor
-endfor
-
+    end
+end
+end

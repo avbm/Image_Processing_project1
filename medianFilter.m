@@ -20,20 +20,22 @@ for i=1:size(input_Img,1)
                     x= 2*size(input_Img,1) - x;
                 else
                     x = x;
-                endif
+                end
                 if(y<1)
                     y=-y+1;
                 elseif y>size(input_Img,2)
                     y= 2*size(input_Img,2) - y;
                 else
                     y = y;
-                endif
+                end
                 filter_buffer(filter_size*(a+filter_range)+(b+filter_range)+1) = input_Img(x,y);
-            endfor
-        endfor
+            end
+        end
         output_Img(i,j)=median(filter_buffer);
-    endfor
-endfor
+    end
+end
+end
+
 
 
 
